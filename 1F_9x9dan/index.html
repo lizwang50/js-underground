@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>1F - 9x9 乘法表</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>1F - 9x9 </h1>
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="numberList"></ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <ul class="numberList-1"></ul>
+      </div>
+      <div class="col-sm-4">
+        <ul class="numberList-2"></ul>
+      </div>
+      <div class="col-sm-4">
+        <ul class="numberList-3"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <script>
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const numberList = document.querySelector('.numberList');
+    const numberList_1 = document.querySelector('.numberList-1');
+    const numberList_2 = document.querySelector('.numberList-2');
+    const numberList_3 = document.querySelector('.numberList-3');
+    //for 迴圈
+    // for (let i = 1; i <= numbers.length; i++) {
+    //   const result = numbers.map(number =>
+    //     `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+    //   console.log(result);
+    //   numberList.innerHTML = numberList.innerHTML + result;
+    // };
+    //forEach 沒有傳回值
+    // numbers.forEach( i => {
+    //   const result = numbers.map(number =>
+    //     `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+    //   console.log(result);
+    //   numberList.innerHTML = numberList.innerHTML + result;
+    // })
+    //map 有傳回值
+    // numbers.map( i => {
+    //   const result = numbers.map(number =>
+    //     `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+    //   numberList.innerHTML = numberList.innerHTML + result;
+    // })
+    //塞進去容器裡的爛方法-1
+    // numbers.map( i => {
+    //   if (i%3 === 1) {
+    //     const result = numbers.map(number =>
+    //     `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+    //     numberList_1.innerHTML = numberList_1.innerHTML + result;
+    //   } else if(i%3 === 2){
+    //     const result = numbers.map(number =>
+    //     `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+    //     numberList_2.innerHTML = numberList_2.innerHTML + result;        
+    //   } else if(i%3 === 0){
+    //     const result = numbers.map(number =>
+    //     `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+    //     numberList_3.innerHTML = numberList_3.innerHTML + result;        
+    //   }
+    // })
+    //塞進去容器裡的方法-2
+    numbers.map( i => {
+      let container = [numberList_3,numberList_1,numberList_2];
+      const result = numbers.map(number =>
+      `<li>${i} x ${number} = ${i * number}</li>`).join("\n");
+      container[i%3].innerHTML = container[i%3].innerHTML + result;
+    })
+  </script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
