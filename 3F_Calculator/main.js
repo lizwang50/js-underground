@@ -1,7 +1,8 @@
 const num_button = document.querySelectorAll('.btn');
-const operators = '+-*/';
+const operators = '+-*/=';
 const equals = document.querySelector('.equals');
 const clean = document.querySelector('.clean');
+const deleted = document.querySelector('.deleted');
 const calResultContainer = document.querySelector('.cal-result');
 
 let processing = document.querySelector('.processing');
@@ -19,7 +20,7 @@ function apply(){
   const compareLast = operators.includes(calResultLast);
   const compareSec = operators.includes(calResultSec);
   //把最新一筆輸入的東西，推進去陣列裡，但是要擋掉 = 和 AC 這兩個按鈕
-  if(value !== '=' && value !== 'AC'){
+  if(value !== '=' && value !== 'AC' && value !== 'Del'){
     calResultArr.push(value);
     console.log(calResultArr); 
     processing.innerHTML = calResultArr.join("");   
@@ -35,7 +36,7 @@ function apply(){
   if (compareSec == compareLast && compareSec == true) {
     calResultArr.splice(-2,1);
     processing.innerHTML = calResultArr.join("");
-  }else if(compareSec){
+  }else{
     //塞到網頁裡面呈現
     processing.innerHTML = calResultArr.join("");
   }
@@ -56,16 +57,26 @@ function calculate() {
 
 function clear() {
   console.log(calResultArr);
-  processing.innerHTML = '';
+  processing.innerHTML = '0';
   //清空字串
   calResultArr = [];
   //清空陣列
   calResultContainer.value = '0';
   //將結果歸零  
 }
+function deletedNumber() {
+  calResultArr.pop();
+  processing.innerHTML = calResultArr.join("");
+  if (processing.innerHTML === '') {
+    processing.innerHTML = '0'
+  }
+}
+
+
 
 num_button.forEach( (item) => {
   item.addEventListener('click',apply);
 })
 equals.addEventListener('click', calculate);
 clean.addEventListener('click', clear);
+deleted.addEventListener('click', deletedNumber);

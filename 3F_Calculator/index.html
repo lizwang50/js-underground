@@ -7,39 +7,56 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <style>
-    </style>
+    <link rel="stylesheet" href="./style.css">
     <title>Calculator</title>
   </head>
   <body>
     <div class="container">
-      <h1>Calculator</h1>
-      <div class="row">
-        <div class="col-sm-6">
+      <h1 class="text-center">Calculator</h1>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-5 col-sm-8 col-8">
           <div class="calculator p-2">
-            <small class="processing"></small>
-            <input class="cal-result form-control" placeholder="Please input the numbers!"></input>
-            <div class="cal-signs mt-3">
-              <input class="btn btn-primary plus" type="button" value="+">
-              <input class="btn btn-primary minus" type="button" value="-">
-              <input class="btn btn-primary time" type="button" value="*">
-              <input class="btn btn-primary divide" type="button" value="/">
-              <input class="btn btn-primary equals" type="button" value="=">
-              <input class="btn btn-primary clean" type="button" value="AC">
-            </div>
-            <div class="cal-buttons mt-3">
-              <input class="btn btn-primary " type="button" value="0">
-              <input class="btn btn-primary " type="button" value="1">
-              <input class="btn btn-primary " type="button" value="2">
-              <input class="btn btn-primary " type="button" value="3">
-              <input class="btn btn-primary " type="button" value="4">
-              <input class="btn btn-primary " type="button" value="5">
-              <input class="btn btn-primary " type="button" value="6">
-              <input class="btn btn-primary " type="button" value="7">
-              <input class="btn btn-primary " type="button" value="8">
-              <input class="btn btn-primary " type="button" value="9">
-            </div>
-            </div>
+              <p class="pt-3 text-right">
+                <span class="processing">0</span>
+              </p>
+              <input class="cal-result text-white text-right h2" value="0"></input>
+              <div class="row">
+                <div class="col-3">
+                  <input class="btn btn-primary " type="button" value="7">
+                  <input class="btn btn-primary " type="button" value="4">
+                  <input class="btn btn-primary " type="button" value="1">
+                  <input class="btn btn-primary " type="button" value="0">
+                </div>
+                <div class="col-3">
+                  <input class="btn btn-primary " type="button" value="8">              
+                  <input class="btn btn-primary " type="button" value="5">
+                  <input class="btn btn-primary " type="button" value="2">
+                  <input class="btn btn-primary " type="button" value="00">
+                </div>
+                <div class="col-3">
+                  <input class="btn btn-primary " type="button" value="9">
+                  <input class="btn btn-primary " type="button" value="6">
+                  <input class="btn btn-primary " type="button" value="3">
+                  <input class="btn btn-primary " type="button" value=".">
+                </div>
+                <div class="col-3">
+                  <input class="btn btn-primary divide" type="button" value="/">
+                  <input class="btn btn-primary time" type="button" value="*">
+                  <input class="btn btn-primary minus" type="button" value="-">
+                  <input class="btn btn-primary plus" type="button" value="+">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <input class="btn btn-primary clean" type="button" value="AC">
+                </div>
+                <div class="col-3">
+                  <input class="btn btn-primary deleted" type="button" value="Del">
+                </div>
+                <div class="col-6">
+                  <input class="btn btn-primary equals" type="button" value="=">
+                </div>
+              </div>
           </div>
         </div>
       </div>
