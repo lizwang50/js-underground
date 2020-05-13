@@ -24,7 +24,13 @@ function apply(){
     console.log(calResultArr); 
     processing.innerHTML = calResultArr.join("");   
   }
-  //如果倒數二筆資料等於運算子，從原陣列刪除第二筆資料，顯示在畫面上
+  //拿到新陣列的第一筆資料
+  const calResultFirst = calResultArr[0];
+  if (calResultFirst == '0') {
+    calResultArr.splice(0,1);
+  }
+  
+  //如果倒數二筆資料等於運算子，從原陣列刪除倒數第二筆資料，顯示在畫面上
   //只留最新的運算子
   if (compareSec == compareLast && compareSec == true) {
     calResultArr.splice(-2,1);
@@ -38,6 +44,8 @@ function apply(){
 function calculate() {
   //拿到結果字串
   const result = calResultArr.join("");
+  //排除空字串，避免空值送出
+  if(result == ''){return}
   console.log(result);
   //用 eval 將字串轉為程式進行運算
   const total = eval(calResultArr.join(""));
