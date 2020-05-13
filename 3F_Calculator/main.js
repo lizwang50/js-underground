@@ -36,18 +36,24 @@ function apply(){
 }
 
 function calculate() {
+  //拿到結果字串
   const result = calResultArr.join("");
   console.log(result);
-  console.log(eval(result));
+  //用 eval 將字串轉為程式進行運算
   const total = eval(calResultArr.join(""));
+  console.log(eval(result));
+  //將結果呈現在網頁上的 input 值裡面
   calResultContainer.value = total;
 }
 
 function clear() {
   console.log(calResultArr);
   processing.innerHTML = '';
+  //清空字串
   calResultArr = [];
-  calResultContainer.value = '0';  
+  //清空陣列
+  calResultContainer.value = '0';
+  //將結果歸零  
 }
 
 num_button.forEach( (item) => {
