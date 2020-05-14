@@ -1,62 +1,59 @@
 const num_button = document.querySelectorAll('.btn');
-const operators = '+-*/=';
 const equals = document.querySelector('.equals');
 const clean = document.querySelector('.clean');
 const deleted = document.querySelector('.deleted');
-const calResultContainer = document.querySelector('.cal-result');
-let processing = document.querySelector('.processing');
+const calResult = document.querySelector('.cal-result');
+const processing = document.querySelector('.processing');
+
 let calResultArr = [];
 
-function apply(){
-  const value = this.value;  
-  const calResultArrLen = calResultArr.length;
-  const calResultLast = calResultArr[calResultArrLen - 1];
-  const calResultSec = calResultArr[calResultArrLen - 2];
-  const compareLast = operators.includes(calResultLast); //布林值
-  const compareSec = operators.includes(calResultSec);   //布林值
-  if(value !== '=' && value !== 'AC' && value !== 'Del' && calResultArrLen < 9){
+// 拿到陣列最後一個值
+function getLastValue() {
+  if (calResultArr.length === 0) {
+    return
+  }
+  return calResultArr[calResultArr.length - 1];
+}
+
+// 判斷是否為運算子
+function isOperator(n) {
+  return n === '=' || n === '-' || n === '*' || n === '/' || n === '+'
+}
+// 判斷最後一個值是否為運算子
+function isLastInputOperator() {
+  return isOperator(getLastValue())
+}
+
+
+// 將陣列最後一個值，塞到 processing 和 calResult
+function inputNumber(e) {
+  const value = e.target.value;
+  if(value !== '=' && value !== 'AC' && value !== 'Del'){
     calResultArr.push(value);
-    console.log(calResultArr); 
-    processing.innerHTML = calResultArr.join("");
+    console.log(getLastValue()); 
   }
-  const calResultFirst = calResultArr[0];
-  const compareFirst = operators.includes(calResultFirst);   //布林值
-  if (calResultFirst == '0' || compareFirst == true) {
-    calResultArr.splice(0,1);
-    return 
-  }
-  if (compareSec == compareLast && compareSec == true) {
-    calResultArr.splice(-2,1);
-    processing.innerHTML = calResultArr.join("");
-  }else{
-    processing.innerHTML = calResultArr.join("");
-  }
+}
+function getResult() {
+    //用 eval 將字串轉為程式進行運算
+    //將結果呈現在網頁上的 input 值裡面
+    calResult.value = eval(calResultArr.join(""));
+    //清空陣列，準備下一次運算
+    calResultArr = [];  
 }
 
-function calculate() { 
-  const result = calResultArr.join("");  
-  if(result == ''){return}
-  const total = eval(calResultArr.join(""));
-  calResultContainer.value = total;
-  calResultArr = [];
-}
-
-function clear() {
-  processing.innerHTML = '0';
-  calResultArr = [];
-  calResultContainer.value = '0';
-}
-function deletedNumber() {
-  calResultArr.pop();
+// 執行 update 畫面
+function updateView() {
   processing.innerHTML = calResultArr.join("");
-  if (processing.innerHTML === '') {
-    processing.innerHTML = '0'
-  }
+  getResult();
 }
 
 num_button.forEach( (item) => {
-  item.addEventListener('click',apply);
+  item.addEventListener('click',(e)=>{
+    inputNumber(e)
+    updateView()
+  });
 })
-equals.addEventListener('click', calculate);
-clean.addEventListener('click', clear);
-deleted.addEventListener('click', deletedNumber);
+updateView()
+// equals.addEventListener('click', calculate);
+// clean.addEventListener('click', clear);
+// deleted.addEventListener('click', deletedNumber);

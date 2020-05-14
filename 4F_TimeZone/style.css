@@ -1,0 +1,16 @@
+body{
+  font-family: 'El Messiri', sans-serif;
+}
+input,
+textarea,
+button,
+img,
+a,
+select {
+  outline: none !important;
+  border: none;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 0px;
+}
