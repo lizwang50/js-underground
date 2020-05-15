@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600&display=swap" rel="stylesheet">
+  <title>Air Quality Infomation</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h2 my-3">空氣品質指標(AQI)</h1>
+        <table class="mt-3 table table-bordered text-center">
+          <thead>
+            <tr>
+              <th scope="col">0～50</th>
+              <th scope="col">51～100</th>
+              <th scope="col">101～150</th>
+              <th scope="col">151～200</th>
+              <th scope="col">201～300</th>
+              <th scope="col">301～400</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>良好</td>
+              <td>普通</td>
+              <td>對敏感族群 不健康</td>
+              <td>對所有族群 不健康</td>
+              <td>非常不健康</td>
+              <td>危害</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-3">
+        <div class="form">
+          <div class="form-group">
+            <label class="mr-2" for="searchCity">City Search : </label>
+            <select class="custom-select" id="searchCity">
+              <option selected>請選擇都市</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="d-flex justify-content-between px-3">
+          <h3 class="city">高雄市</h3>
+          <p class="pt-1"><span class="card-text time">2019-01-24 14:00</span> 更新</p>
+        </div>
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h3 class="area pt-1">前金區</h3>
+                <p class="h3">AQI <span class="text-danger total"> 156</span></p>
+              </div>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">臭氧<small class="mt-1 ml-1">O3 (ppb)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">懸浮微粒<small class="mt-1 ml-1">PM10 (μg/m³)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">細懸浮微粒<small class="mt-1 ml-1">PM2.5 (μg/m³)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">一氧化碳<small class="mt-1 ml-1">CO (ppm)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">二氧化硫<small class="mt-1 ml-1">SO2 (ppb)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">二氧化氮<small class="mt-1 ml-1">NO2 (ppb)</small></th>
+                    <td>82</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h3 class="area pt-1">前金區</h3>
+                <p class="h3">AQI <span class="total"> 156</span></p>
+              </div>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">臭氧<small class="mt-1 ml-1">O3 (ppb)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">懸浮微粒<small class="mt-1 ml-1">PM10 (μg/m³)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">細懸浮微粒<small class="mt-1 ml-1">PM2.5 (μg/m³)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">一氧化碳<small class="mt-1 ml-1">CO (ppm)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">二氧化硫<small class="mt-1 ml-1">SO2 (ppb)</small></th>
+                    <td>82</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">二氧化氮<small class="mt-1 ml-1">NO2 (ppb)</small></th>
+                    <td>82</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="container my-3">
+    <p>資料來源：行政院環境保護署</p>
+  </footer>
+  <!-- Optional JavaScript -->
+  <script src="main.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
