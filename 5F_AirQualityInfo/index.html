@@ -46,62 +46,59 @@
     <hr>
     <div class="row mt-4">
       <div class="col-3">
-        <div class="form">
-          <div class="form-group">
-            <label class="mr-2" for="searchCity">選擇都市 : </label>
-            <select class="custom-select" id="searchCity">
-              <option selected>請選擇都市</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="mr-2" for="searchCity">選擇區域 : </label>
-            <select class="custom-select" id="searchCity">
-              <option selected>請選擇區域</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">查詢</button>
-        </div>
+        <form class="form">
+            <div class="form-group">
+              <label class="mr-2" for="searchCity">都市 : </label>
+              <select class="custom-select" id="searchCity">
+                <option selected>選擇都市</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="mr-2" for="searchSite">監測站 : </label>
+              <select class="custom-select" id="searchSite">
+                <option selected>選擇監測站</option>
+              </select>
+            </div>
+          <button type="submit" class="btn btn-primary result">查詢</button>
+        </form>
       </div>
       <div class="col-9">
         <div class="d-flex justify-content-between px-3">
-          <h3 class="city">高雄市 <span class="font-weight-bold area"> 前金區 </span></h3>
-          <p class="pt-1"><span class="card-text time">2019-01-24 14:00</span> 更新</p>
+          <h3 class="city">高雄市 <span class="font-weight-bold site"> 前金區 </span></h3>
+          <p class="pt-1"><span class="card-text updateTime">2019-01-24 14:00</span> 更新</p>
         </div>
         <div class="card-deck">
           <div class="card">
             <div class="card-body">
-              <h4 class="pt-1 mb-3">今日空氣品質指標 : <span class="text-danger total font-weight-bold"> 156</span></h4>
+              <div class="d-flex justify-content-between">
+                <h4 class="pt-1 mb-3">今日空氣品質指標 : <span class="text-danger totalAQI font-weight-bold"> 156</span></h4>
+                <h4 class="pt-1 mb-3"><span class="text-danger status font-weight-bold"> 良好</span></h4>
+              </div>
               <table class="table table-striped">
                 <tbody>
                   <tr>
                     <th scope="row">臭氧<small class="mt-1 ml-1">O3 (ppb)</small></th>
-                    <td>82</td>
+                    <td class="o3">82</td>
                   </tr>
                   <tr>
                     <th scope="row">懸浮微粒<small class="mt-1 ml-1">PM10 (μg/m³)</small></th>
-                    <td>82</td>
+                    <td class="pm10">82</td>
                   </tr>
                   <tr>
                     <th scope="row">細懸浮微粒<small class="mt-1 ml-1">PM2.5 (μg/m³)</small></th>
-                    <td>82</td>
+                    <td class="pm25">82</td>
                   </tr>
                   <tr>
                     <th scope="row">一氧化碳<small class="mt-1 ml-1">CO (ppm)</small></th>
-                    <td>82</td>
+                    <td class="co">82</td>
                   </tr>
                   <tr>
                     <th scope="row">二氧化硫<small class="mt-1 ml-1">SO2 (ppb)</small></th>
-                    <td>82</td>
+                    <td class="so2">82</td>
                   </tr>
                   <tr>
                     <th scope="row">二氧化氮<small class="mt-1 ml-1">NO2 (ppb)</small></th>
-                    <td>82</td>
+                    <td class="no2">82</td>
                   </tr>
                 </tbody>
               </table>
