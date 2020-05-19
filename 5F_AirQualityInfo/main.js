@@ -4,21 +4,7 @@ const searchSite = document.querySelector('#searchSite');
 const search = document.querySelector('.search');
 let result = document.querySelectorAll('.result');
 
-// const city = document.querySelector('.city');
-// const siteView = document.querySelector('.site');
-// const updateTime = document.querySelector('.updateTime');
-
-// const totalAQI = document.querySelector('.totalAQI');
-// const status = document.querySelector('.status');
-// const o3 = document.querySelector('.o3');
-// const pm10 = document.querySelector('.pm10');
-// const pm25 = document.querySelector('.pm25');
-// const co = document.querySelector('.co');
-// const so2 = document.querySelector('.so2');
-// const no2 = document.querySelector('.no2');
-
 const county = [];
-// let site = [];
 
 fetch('https://opendata.epa.gov.tw/api/v1/AQI?%24skip=0&%24top=1000&%24format=json')
 .then(function(response) {
