@@ -63,7 +63,7 @@ function getResult(e) {
       result[5].textContent = data[i].O3
       result[6].textContent = data[i].PM10
       // pm2.5 沒辦法取得QQ
-      result[7].textContent = data[i].PM10
+      result[7].textContent = data[i]['PM2.5']
       result[8].textContent = data[i].CO
       result[9].textContent = data[i].SO2
       result[10].textContent = data[i].NO2
