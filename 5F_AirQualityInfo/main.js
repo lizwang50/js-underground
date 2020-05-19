@@ -2,9 +2,7 @@ let data
 const searchCity = document.querySelector('#searchCity');
 const searchSite = document.querySelector('#searchSite');
 const search = document.querySelector('.search');
-
 const result = document.querySelectorAll('.result');
-
 const county = [];
 
 //使用 fetch 從政府 OpenData 撈取資料
@@ -62,13 +60,11 @@ function getResult(e) {
       result[4].textContent = data[i].Status
       result[5].textContent = data[i].O3
       result[6].textContent = data[i].PM10
-      // pm2.5 沒辦法取得QQ
       result[7].textContent = data[i]['PM2.5']
       result[8].textContent = data[i].CO
       result[9].textContent = data[i].SO2
       result[10].textContent = data[i].NO2
     }
-    
   }
 }
 //選擇都市監聽 onChange 事件
