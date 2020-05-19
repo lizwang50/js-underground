@@ -2,10 +2,12 @@ let data
 const searchCity = document.querySelector('#searchCity');
 const searchSite = document.querySelector('#searchSite');
 const search = document.querySelector('.search');
-let result = document.querySelectorAll('.result');
+
+const result = document.querySelectorAll('.result');
 
 const county = [];
 
+//使用 fetch 從政府 OpenData 撈取資料
 fetch('https://opendata.epa.gov.tw/api/v1/AQI?%24skip=0&%24top=1000&%24format=json')
 .then(function(response) {
   return response.json();
@@ -14,18 +16,28 @@ fetch('https://opendata.epa.gov.tw/api/v1/AQI?%24skip=0&%24top=1000&%24format=js
   console.log('data ok');
   data = json
   getCounty();
-  updateCountySelect();
+  addCountySelect();
 });
 
+// 拿到所選的縣市
 function getCounty() {
   for (let i = 0; i < data.length; i++) {
     if (county.indexOf(data[i].County) == -1) {
       county.push(data[i].County)
     } 
   }
+  //推入縣市陣列
   return county
 }
 
+//將縣市資料加入選項裡
+function addCountySelect() {
+  county.forEach( i => {
+    searchCity.innerHTML += `<option value="${i}">${i}</option>`;
+  });
+}
+
+//找出所選縣市的空氣監測站
 function filterCountySite(event) {
   let tempCounty = event.target.value;  //是所選的縣市資料
   searchSite.innerHTML = '';  
@@ -36,18 +48,13 @@ function filterCountySite(event) {
   }
 }
 
-function updateCountySelect() {
-  county.forEach( i => {
-    searchCity.innerHTML += `<option value="${i}">${i}</option>`;
-  });
-}
-
+//得到監測結果，並顯示到畫面上
 function getResult(e) {
   e.preventDefault();
+  //得到所選取的監測站資料
   const resultSite = searchSite.value;
   for (let i = 0; i < data.length; i++) {
     if (resultSite === data[i].SiteName) {
-      console.log(resultSite);
       result[0].textContent = data[i].County
       result[1].textContent = data[i].SiteName
       result[2].textContent = data[i].PublishTime
@@ -55,6 +62,7 @@ function getResult(e) {
       result[4].textContent = data[i].Status
       result[5].textContent = data[i].O3
       result[6].textContent = data[i].PM10
+      // pm2.5 沒辦法取得QQ
       result[7].textContent = data[i].PM10
       result[8].textContent = data[i].CO
       result[9].textContent = data[i].SO2
@@ -63,6 +71,7 @@ function getResult(e) {
     
   }
 }
-
+//選擇都市監聽 onChange 事件
 searchCity.addEventListener('change',filterCountySite);
-search.addEventListener('click',getResult)
+//搜尋按鈕監聽 onClick 事件
+search.addEventListener('click',getResult);
