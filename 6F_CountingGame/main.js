@@ -10,18 +10,22 @@ let seconds = 12;
 let setTimer;
 
 function timer() {
-  setTimer = setInterval(countdownSec, 1000);  
-  console.log(new Date(),14)
+  setTimer = setInterval(countdownSec, 1000);
 }
 
 function countdownSec() {
-  console.log(new Date(),18)
-  if (countdownMin && seconds > 0) {
-    seconds--;
+  console.log('1')
+  seconds--;
+  if (countdownMin && seconds >= 10) {
     timerSec.textContent = `${seconds}`;
-    console.log(new Date(),'22 - stop!!!')
+    console.log('2')
+  }else if(0 <= seconds && seconds <= 9){
+    console.log('3')
+    timerSec.textContent = `0${seconds}`;
+  }else{
+    console.log('stopTimer')
+    stopTimer();
   }
-  console.log(new Date(),24)
 }
 
 function stopTimer() {
