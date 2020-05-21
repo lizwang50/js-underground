@@ -58,3 +58,10 @@ h1::before{
   transition: all 0.8s cubic-bezier(.25,.1,.25,1);
 }
 
+.form-control-xl {
+  height: calc(5.875rem + 2px);
+  padding: .5rem 1rem;
+  font-size: 5.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+}
