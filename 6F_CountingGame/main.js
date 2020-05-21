@@ -57,33 +57,29 @@ const operator = {
 // default random numbers
 let numberA = Math.ceil(Math.random() * 10);
 let numberB = Math.ceil(Math.random() * 10);
-let numbers = [];
 // default random operators obj
 const values = Object.values(operator);
 let randomOperators = values[parseInt(Math.random() * values.length)];
+let numbers = [numberA,randomOperators,numberB];
 
 let answer;
 let userAnswerStr;
 
 function getRandom(min, max){
   numberA = Math.ceil(Math.random() * (max - min) + min); // 最大到 3 位數
-  numberB = Math.ceil(Math.random() * min);  // 最大到 2 位數
-  console.log(numberB);
-  return numbers = [numberA,randomOperators,numberB];
+  numberB = Math.ceil(Math.random() * (max - min) + min);  // 最大到 3 位數
 };
 
 function randomQuestions() {
   let currentSec = timerSec.textContent;
   randomOperators = values[parseInt(Math.random() * values.length)];
+  updateQuestions(numberA,numberB);
   if (40 <= currentSec && currentSec < 60 ) {
     getRandom(1,9);     
-    updateQuestions(numberA,numberB)
   } else if (20 < currentSec && currentSec <= 39) {
     getRandom(10,99);   
-    updateQuestions(numberA,numberB);
   } else if (0 < currentSec && currentSec <= 19) {
     getRandom(100,999); 
-    updateQuestions(numberA,numberB);
   }
   console.log(numbers);
   
