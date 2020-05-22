@@ -54,15 +54,14 @@ const operator = {
   "x": "*",
   "÷": "/",
 }
-// default random numbers
-let numberB = getRandom(1,9);
-let numberA = getRandom(1,9);
 // default random operators obj
 const values = Object.values(operator);
-// operator rules
-let randomOperators = values[parseInt(Math.random() * values.length)];
+let randomOperators;
+// default random numbers
+let numberB;
+let numberA;
 // results
-let numbers = [numberA,randomOperators,numberB];
+let numbers = [];
 let answer;
 let userAnswerStr;
 
@@ -78,13 +77,35 @@ function createNumbers(o,a,b) {
     if (o == '/' && a % b !== 0){
       console.log('不可以回傳的除法');
       randomQuestions();
+      console.log('重跑另外一個算式');
+      updateQuestionsView();  
     }else{
-      updateQuestionsView();
+      console.log('2 : 可以回傳算式');
       getAnswer(numbers);
     }
 }
 
-// start random questions
+// start question
+function startQuestion() {
+  console.log('startQuestion');
+  //default question
+  numberA = getRandom(1,9); 
+  numberB = getRandom(1,9);
+  console.log('get A B! AB 是 1~9 的亂數');
+  // operator rules
+  randomOperators = values[parseInt(Math.random() * values.length)];
+  if (randomOperators == '/' && numberA % numberB !== 0){
+    console.log('1 : 不可以回傳的除法');
+    randomQuestions();
+    console.log('重跑另外一個算式');
+    updateQuestionsView();
+  }else{
+    console.log('1 : 可以回傳算式');
+    getAnswer(numbers);
+  }
+}
+
+// random questions
 function randomQuestions() {
   console.log('randomQuestions')
   let currentSec = timerSec.textContent;
@@ -104,7 +125,7 @@ function randomQuestions() {
     numberA = getRandom(100,999); 
     numberB = getRandom(10,99);
     // console.log('0~19秒',numberA,numberB);
-  }else { console.log("QQ")}
+  }
   createNumbers(randomOperators,numberA,numberB);
 }
 
@@ -130,12 +151,13 @@ function getUsersAnswers() {
 function updateQuestionsView() {
   // console.log('updateQuestionsView');
   questionView.textContent = `${numberA} ${randomOperators} ${numberB}`;
-  getUsersAnswers();
+  // getUsersAnswers();
   // console.log(randomOperators);
 }
 
 // get question and answer
 // getAnswer(numbers);
+startQuestion();
 randomQuestions();
 createNumbers(randomOperators,numberA,numberB);
 // console.log(numbers,'=',answer,'default');
