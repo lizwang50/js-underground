@@ -1,30 +1,33 @@
 $('.start-button').on('click', function (e) {
   e.preventDefault()
-  // $( "section:nth-child(1)" ).addClass( "d-none" );
-  // $( "section:nth-child(2)" ).removeClass( "d-none" );
+  $( "section:nth-child(1)" ).addClass( "d-none" );
+  $( "section:nth-child(2)" ).removeClass( "d-none" );
+  timer();
 })
-//跨 function 使用變數的方法
-//1. 宣告在 function 外
-//2. 放在參數傳遞
+const tryAgainBtn = document.querySelector('.try-again');
+tryAgainBtn.addEventListener('click',()=>{
+  console.log('123');
+})
 
 // Set timer
 const timerSec = document.querySelector('.timer-sec');
 const timerMin = document.querySelector('.timer-min');
-let seconds = 60;
+let seconds = 20;
 let setTimer;
+let setMinTimer;
 // Minutes coundown timer
 function countdownMin() {
   timerMin.textContent = `00`;
 }
-setTimeout(countdownMin, 1000);
 
 // Seconds coundown timer
 function timer() {
+  setMinTimer = setTimeout(countdownMin, 1000);
   setTimer = setInterval(countdownSec, 1000);
 }
 // Seconds coundown timer
 function countdownSec() {
-  // console.log('1')
+    // console.log('1')
   seconds--;
   if (countdownMin && seconds >= 10) {
     timerSec.textContent = `${seconds}`;
@@ -33,6 +36,7 @@ function countdownSec() {
     // console.log('3')
     timerSec.textContent = `0${seconds}`;
   } else {
+    isFinalScore();
     console.log('stopTimer')
     stopTimer();
   }
@@ -42,7 +46,8 @@ function countdownSec() {
 function stopTimer() {
   clearInterval(setTimer);
 }
-timer();
+
+// timer();
 
 
 // Random number
@@ -67,97 +72,122 @@ let userAnswerStr;
 
 // get a random number
 function getRandom(min, max){
-  console.log('getRandom', min,max)
+  // console.log('getRandom', min,max)
   return Math.floor(Math.random() * (max - min) + min);
 };
 
 function createNumbers(o,a,b) {
-  console.log('createNumbers', o,a,b)
-    // 如果是除法，而且 a / b 有餘數，不可以回傳
+  // console.log('3. 製作算式：',a,o,b)
     if (o == '/' && a % b !== 0){
-      console.log('不可以回傳的除法');
-      randomQuestions();
-      console.log('重跑另外一個算式');
-      updateQuestionsView();  
+      // console.log('4. 判斷算式：不可以回傳的除法');
+      randomNumbers();
+      // console.log('5. 重跑另外一個算式');
+      updateQuestionsView();
     }else{
-      console.log('2 : 可以回傳算式');
-      getAnswer(numbers);
+      // console.log('4. 判斷算式：可以回傳算式');
+      numbers = [numberA,randomOperators,numberB]
+      updateQuestionsView();
+      // console.log('5. 呈現算式：將算式呈現到畫面上之後 return numbers');
+      return numbers
     }
 }
 
-// start question
-function startQuestion() {
-  console.log('startQuestion');
-  //default question
-  numberA = getRandom(1,9); 
-  numberB = getRandom(1,9);
-  console.log('get A B! AB 是 1~9 的亂數');
-  // operator rules
-  randomOperators = values[parseInt(Math.random() * values.length)];
-  if (randomOperators == '/' && numberA % numberB !== 0){
-    console.log('1 : 不可以回傳的除法');
-    randomQuestions();
-    console.log('重跑另外一個算式');
-    updateQuestionsView();
-  }else{
-    console.log('1 : 可以回傳算式');
-    getAnswer(numbers);
-  }
-}
-
 // random questions
-function randomQuestions() {
-  console.log('randomQuestions')
-  let currentSec = timerSec.textContent;
+function randomNumbers() {
+  // console.log('1. 生成新的題目')
   randomOperators = values[parseInt(Math.random() * values.length)];
-  if (40 <= currentSec && currentSec < 60 ) {
+  if (40 <= seconds) {
     // 最大到 1 位數
     numberA = getRandom(1,9); 
     numberB = getRandom(1,9);
-    // console.log('40~60秒',numberA,numberB);
-  } else if (20 < currentSec && currentSec <= 39) {
+    console.log('第一階段: 40~60秒 題目：',numberA,numberB);
+  } else if (20 <= seconds) {
     // 最大到 2 位數
     numberA = getRandom(10,99);
     numberB = getRandom(10,99);
-    // console.log('20~39秒',numberA,numberB);
-  } else if (0 < currentSec && currentSec <= 19) {
+    console.log('第二階段: 20~39秒',numberA,numberB);
+  } else {
     // A 最大到 3 位數 ; B 最大 2 位數
     numberA = getRandom(100,999); 
     numberB = getRandom(10,99);
-    // console.log('0~19秒',numberA,numberB);
+    console.log('第三階段: 0~19秒',numberA,numberB);
   }
+  // console.log('2. 產生亂數題目(判斷除法答案)');
   createNumbers(randomOperators,numberA,numberB);
+  getAnswer(numbers);
 }
 
-function getAnswer(num) {
-  console.log('getAnswer',num)
-  answer  = Math.floor(eval(num.join("")));
-  // console.log(num,'=',answer);
+// get current answer
+function getAnswer() {
+  answer  = Math.floor(eval(numbers.join("")));
+  console.log(answer);
+  return answer;
 }
 
 // get users answers and random next questions
 function getUsersAnswers() {
-  console.log('getUsersAnswers')
   userAnswerInput.addEventListener("keyup", function (event) {
     if (userAnswerInput.value !== '' && event.key === "Enter") {
-      randomQuestions();
       userAnswerStr = userAnswerInput.value;
-      console.log(userAnswerStr,'is user typing');
-      return userAnswerInput.value = '';
+      isScore(userAnswerStr);
+      randomNumbers();
+      updateQuestionsView();
+      userAnswerInput.value = '';
+      return userAnswerStr;
     }
   });
 }
 
+// update question
 function updateQuestionsView() {
-  // console.log('updateQuestionsView');
   questionView.textContent = `${numberA} ${randomOperators} ${numberB}`;
-  // getUsersAnswers();
-  // console.log(randomOperators);
 }
 
-// get question and answer
-// getAnswer(numbers);
-startQuestion();
-randomQuestions();
-createNumbers(randomOperators,numberA,numberB);
-// console.log(numbers,'=',answer,'default');
+randomNumbers();
+getUsersAnswers();
+
+// get score!
+let scoreView = document.querySelector('.score');
+let score = 0;
+
+function isScore(userAnswer) {
+  console.log('isScore',answer,userAnswer);
+  answerStr = `${answer}`;
+  if (userAnswer == answerStr && 20 <= seconds) {
+    score++;
+  } else if (userAnswer == answerStr && 0 <= seconds){
+    score += 5;
+  } else {
+    console.log('not match!!');
+  }
+  console.log(score);
+  updateScore(score);
+}
+
+function updateScore(score) {
+  console.log('updateScore',score);  
+  console.log('166',scoreView.textContent);
+  if (score < 10) {
+    scoreView.textContent = `00${score}`;
+  }else if(score < 100){
+    scoreView.textContent = `0${score}`;
+  }else{
+    console.log('no point');
+  }
+  return scoreView.textContent;
+}
+
+// get final score
+
+let finalScore = document.querySelector('.final-score');
+
+function isFinalScore() {
+  const finalScoreNumber = score;
+  const section3 = document.querySelector('section').childNodes;
+  console.log(section3[2]);
+  console.log('isFinalScore',score);
+  console.log(seconds);  
+  if (seconds <= 0) {
+    finalScore.textContent = `${finalScoreNumber}`;    
+  }
+}
