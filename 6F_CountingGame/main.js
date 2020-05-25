@@ -4,15 +4,11 @@ $('.start-button').on('click', function (e) {
   $( "section:nth-child(2)" ).removeClass( "d-none" );
   timer();
 })
-const tryAgainBtn = document.querySelector('.try-again');
-tryAgainBtn.addEventListener('click',()=>{
-  console.log('123');
-})
 
 // Set timer
 const timerSec = document.querySelector('.timer-sec');
 const timerMin = document.querySelector('.timer-min');
-let seconds = 20;
+let seconds = 60;
 let setTimer;
 let setMinTimer;
 // Minutes coundown timer
@@ -27,7 +23,7 @@ function timer() {
 }
 // Seconds coundown timer
 function countdownSec() {
-    // console.log('1')
+  // console.log('1')
   seconds--;
   if (countdownMin && seconds >= 10) {
     timerSec.textContent = `${seconds}`;
@@ -39,6 +35,7 @@ function countdownSec() {
     isFinalScore();
     console.log('stopTimer')
     stopTimer();
+    gameOver();
   }
 }
 
@@ -77,7 +74,7 @@ function getRandom(min, max){
 };
 
 function createNumbers(o,a,b) {
-  // console.log('3. 製作算式：',a,o,b)
+  console.log('3. 製作算式：',a,o,b)
     if (o == '/' && a % b !== 0){
       // console.log('4. 判斷算式：不可以回傳的除法');
       randomNumbers();
@@ -166,7 +163,6 @@ function isScore(userAnswer) {
 
 function updateScore(score) {
   console.log('updateScore',score);  
-  console.log('166',scoreView.textContent);
   if (score < 10) {
     scoreView.textContent = `00${score}`;
   }else if(score < 100){
@@ -183,11 +179,37 @@ let finalScore = document.querySelector('.final-score');
 
 function isFinalScore() {
   const finalScoreNumber = score;
-  const section3 = document.querySelector('section').childNodes;
-  console.log(section3[2]);
-  console.log('isFinalScore',score);
-  console.log(seconds);  
   if (seconds <= 0) {
     finalScore.textContent = `${finalScoreNumber}`;    
   }
+}
+
+
+// game over page
+const gameOverSection = document.querySelector('.game-over');
+const playGround = document.querySelector('.playground');
+
+function gameOver(){
+  gameOverSection.classList.remove("d-none");
+  playGround.classList.add("d-none");
+}
+
+// restart game 
+const tryAgainBtn = document.querySelector('.try-again');
+tryAgainBtn.addEventListener('click',restartGame);
+
+function restartGame(e) {
+  e.preventDefault();
+  console.log('restartGame');
+  playGround.classList.remove("d-none");
+  gameOverSection.classList.add("d-none");
+  resetNumbers(); 
+  randomNumbers();
+}
+
+function resetNumbers() {
+  scoreView.textContent = `000`;
+  timerMin.textContent = `01`;
+  seconds = 60;
+  userAnswerInput.value = '';
 }
