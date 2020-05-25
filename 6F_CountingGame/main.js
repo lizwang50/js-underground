@@ -208,6 +208,7 @@ function restartGame(e) {
 }
 
 function resetNumbers() {
+  score = 0;
   scoreView.textContent = `000`;
   timerMin.textContent = `01`;
   seconds = 60;

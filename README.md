@@ -1,10 +1,10 @@
 # JS 地下城
-- 1F - 9x9 乘法表
-- 2F - 時鐘
-- 3F - 計算機
-- 4F - 時區
-- 5F - 全台空氣指標儀表板
-- 6F - 60秒算數遊戲
+- (1F - 9x9 乘法表)[https://lizwang50.github.io/js-underground/1F_9x9dan/index.html]
+- (2F - 時鐘)[https://lizwang50.github.io/js-underground/2F_Clock/index.html]
+- (3F - 計算機)[https://lizwang50.github.io/js-underground/3F_Calculator/index.html]
+- (4F - 時區)[https://lizwang50.github.io/js-underground/4F_TimeZone/index.html]
+- (5F - 全台空氣指標儀表板)[https://lizwang50.github.io/js-underground/5F_AirQualityInfo/index.html]
+- (6F - 60秒算數遊戲)[https://lizwang50.github.io/js-underground/6F_CountingGame/index.html]
 - 7F - 畫版
 - 8F - 井字遊戲
 - 9F - 抽獎轉盤
