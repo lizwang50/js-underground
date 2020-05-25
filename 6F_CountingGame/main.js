@@ -101,7 +101,7 @@ function randomNumbers() {
   } else if (20 <= seconds) {
     // 最大到 2 位數
     numberA = getRandom(10,99);
-    numberB = getRandom(10,99);
+    numberB = getRandom(1,9);
     console.log('第二階段: 20~39秒',numberA,numberB);
   } else {
     // A 最大到 3 位數 ; B 最大 2 位數
