@@ -1,0 +1,39 @@
+body{
+  background-color: #E8E8E8;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.btn-light {
+  color: #212529;
+  background-color: transparent;
+  border-color: #fff;
+}
+header{
+  position: relative;
+  box-shadow: 2px 8px 25px 0px rgba(0,0,0,0.11);
+}
+.toggle-up{
+  position: absolute;
+  top: 110%;
+  left: 49%;
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 2px 8px 25px 0px rgba(0,0,0,0.11);
+}
+footer{
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+}
+.editor{
+  border-radius: 40px;
+}
+.toggle-down{
+  position: absolute;
+  bottom: 110%;
+  left: 49%;
+  background-color: #fff;
+  border-radius: 40px;
+}
