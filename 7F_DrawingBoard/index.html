@@ -16,40 +16,39 @@
 
 <body>
   <header>
-    <div class="bg-white text-center py-2">
+    <a type="button" class="btn btn-light toggle-btn">
+      <i class="fas fa-chevron-down fa-xs"></i>
+    </a>
+    <div class="bg-white text-center py-2 toggle-item">
       <a href="#" type="button" class="btn btn-light d-inline-flex align-items-center">
         <i class="far fa-save fa-lg"></i>
         <span class="pl-2 font-weight-bold">SAVE</span>
       </a>
-      <a href="#" type="button" class="btn btn-light d-inline-flex align-items-center">
+      <a href="#" id="clearAll" type="button" class="btn btn-light d-inline-flex align-items-center">
         <i class="fas fa-expand fa-lg"></i>
         <span class="pl-2 font-weight-bold">CLEAR ALL</span>
       </a>
-      <a type="button" class="btn btn-light toggle-up">
-        <i class="fas fa-chevron-down fa-xs"></i>
-      </a>
     </div>
   </header>
-  <div class="container min-vh-100">
-  </div>
+  <canvas id="draw" class="canvas" width="1200" height="600"></canvas>
   <footer class="footer">
-    <div class="container">
-      <div class="bg-white text-center py-2 editor">
-        <form class="form-row">
-          <div class="col">
-            <label for="sizeControlRange">SIZE : </label>
-            <input type="range" name="size" id="sizeControlRange">
-          </div>
-          <div class="col">
-            <label for="Color">COLOR : </label>
-            <input type="color" name="color" id="Color">
-          </div>
-        </form>
-        <a type="button" class="btn btn-light toggle-down">
-          <i class="fas fa-chevron-up fa-xs"></i>
-        </a>
-      </div>
+    <a type="button" class="btn btn-light toggle-btn">
+      <i class="fas fa-chevron-up fa-xs"></i>
+    </a>
+    <div class="bg-white text-center py-2 editor toggle-item">
+      <a href="#" type="button" class="btn btn-light eraser">
+        <i class="fas fa-eraser fa-2x"></i>
+      </a>
+      <a href="#" type="button" class="btn btn-light">
+        <i class="fas fa-palette fa-2x"></i>
+      </a>
+      <label for="brushSize" class="brush-size mb-0">
+        <i class="fas fa-paint-brush fa-2x"></i>
+      </label>
+      <input type="range" class="custom-range" min="1" max="64" id="brushSize" step="1" value="10">
+      <p class="d-inline-flex"><span class="px-number pl-2">10</span>px</p>
     </div>
+    <!-- <canvas id="tooltipCanvas" width="100" height="100"></canvas> -->
   </footer>
 
   <!-- Optional JavaScript -->
@@ -63,6 +62,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>
