@@ -30,21 +30,23 @@
       </a>
     </div>
   </header>
-  <canvas id="draw" class="canvas" width="1200" height="600"></canvas>
+  <canvas id="draw" class="canvas" width="1220" height="600"></canvas>
   <footer class="footer">
     <a type="button" class="btn btn-light toggle-btn">
       <i class="fas fa-chevron-up fa-xs"></i>
     </a>
     <div class="bg-white text-center py-2 editor toggle-item">
+      <input class="invisible palette-color" type="color" name="color" id="color" value="#ff0000">
+      <a href="#" type="button" class="btn btn-light">
+        <i class="fas fa-palette fa-2x palette">
+        </i>
+      </a>
       <a href="#" type="button" class="btn btn-light eraser">
         <i class="fas fa-eraser fa-2x"></i>
       </a>
-      <a href="#" type="button" class="btn btn-light">
-        <i class="fas fa-palette fa-2x"></i>
-      </a>
-      <label for="brushSize" class="brush-size mb-0">
+      <a href="#" type="button" class="btn btn-light brush-size active">
         <i class="fas fa-paint-brush fa-2x"></i>
-      </label>
+      </a>
       <input type="range" class="custom-range" min="1" max="64" id="brushSize" step="1" value="10">
       <p class="d-inline-flex"><span class="px-number pl-2">10</span>px</p>
     </div>

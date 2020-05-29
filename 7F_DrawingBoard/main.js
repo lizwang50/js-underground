@@ -11,31 +11,41 @@ const canvas = document.querySelector('#draw');
 
 // 用 getContext() 取得渲染環境。
 let ctx = canvas.getContext('2d');
-ctx.strokeStyle = 'red';
+ctx.strokeStyle = '#333333';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = 10;
 
 let isDrawing = false;
+let isEraser = false;
 let lastX = 0;
 let lastY = 0;
 let direction = true;
 
-function draw(e) {
-  if(!isDrawing) return;
-  ctx.beginPath();
-  ctx.moveTo(lastX,lastY);
-  ctx.lineTo(e.offsetX,e.offsetY);
-  ctx.stroke();
-  [lastX,lastY] = [e.offsetX,e.offsetY];
+function mouseMove(e) {
+  if(isEraser == true) {
+    ctx.beginPath();
+    ctx.moveTo(lastX,lastY);
+    ctx.stroke();
+    [lastX,lastY] = [e.offsetX,e.offsetY];
+    eraseDraw()
+  }else{
+    if(!isDrawing) return
+    ctx.beginPath();
+    ctx.moveTo(lastX,lastY);
+    ctx.lineTo(e.offsetX,e.offsetY);
+    ctx.stroke();
+    [lastX,lastY] = [e.offsetX,e.offsetY];
+  }
 }
+
 
 canvas.addEventListener('mousedown',(e)=>{
   isDrawing = true;
   [lastX,lastY] = [e.offsetX,e.offsetY]
   console.log(lastX,lastY);
 })
-canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousemove', mouseMove);
 canvas.addEventListener('mouseup', ()=> isDrawing = false);
 canvas.addEventListener('mouseout', ()=> isDrawing = false);
 
@@ -76,18 +86,35 @@ brush.addEventListener('change',brushSizing);
 
 // eraser
 const eraser = document.querySelector('.editor .eraser');
-let isActive = false;
+const brushSize = document.querySelector('.brush-size');
 
-function eraserActive() {
-  isActive = true;
-  eraser.classList.toggle('active')
-  eraseDraw()
-}
-eraser.addEventListener('click',eraserActive);
-
-function eraseDraw() {
-  console.log('eraser');
-  if(isActive == true){
-    ctx.clearRect(0, 0, brush.value, brush.value);
+function updateBtn() {
+  if (isEraser = !isEraser) {
+    eraser.classList.add('active');
+    brushSize.classList.remove('active');
+  }else{
+    eraser.classList.remove('active');
+    brushSize.classList.add('active');
   }
 }
+
+eraser.addEventListener('click',updateBtn);
+brushSize.addEventListener('click',updateBtn);
+
+function eraseDraw() {
+  console.log('eraseDraw');
+  ctx.clearRect(lastX-5, lastY-5, brush.value, brush.value);
+}
+
+// palette
+let peletteColor = document.querySelector('.palette-color');
+
+$(".palette").on('click', function(){
+  $("#color").click();
+})
+function changeColor() {
+  console.log(peletteColor.value);
+  ctx.strokeStyle = peletteColor.value
+}
+
+peletteColor.addEventListener('change',changeColor);
