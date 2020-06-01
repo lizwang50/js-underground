@@ -118,3 +118,11 @@ function changeColor() {
 }
 
 peletteColor.addEventListener('change',changeColor);
+
+// save
+const saveBtn = document.querySelector('.save');
+function saveImage() {
+  const dataURL = canvas.toDataURL();
+  saveBtn.href = dataURL.replace(/^data:image\/png/,'data:application/octet-stream');
+}
+saveBtn.addEventListener('click',saveImage);
