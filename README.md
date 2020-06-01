@@ -5,7 +5,7 @@
 - [4F - 時區](https://lizwang50.github.io/js-underground/4F_TimeZone/index.html)
 - [5F - 全台空氣指標儀表板](https://lizwang50.github.io/js-underground/5F_AirQualityInfo/index.html)
 - [6F - 60秒算數遊戲](https://lizwang50.github.io/js-underground/6F_CountingGame/index.html)
-- 7F - 畫版
+- [7F - 畫版](https://lizwang50.github.io/js-underground/7F_DrawingBoard/index.html)
 - 8F - 井字遊戲
 - 9F - 抽獎轉盤
 - 10F - Chrome 應用程式 (幹話產生器)

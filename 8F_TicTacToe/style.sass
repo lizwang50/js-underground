@@ -1,0 +1,71 @@
+$primary : #FF6D70
+$secondary : #ED494C
+$black : #222222
+$white : #ffffff
+
+body
+  font-family: 'Roboto Condensed', sans-serif
+  background-color: $primary
+
+section:first-child
+  // height: 100vh
+  background: $black
+  .wrapper
+    position: relative
+  .btn
+    color: $primary
+  .circle
+    display: block
+    width: 70px
+    height: 70px
+    border: 6px solid $secondary
+    border-radius: 50px
+  .d-circle
+    position: relative
+    display: block
+    width: 90px
+    height: 90px
+    border: 2px solid $primary
+    border-radius: 50px
+    &::before
+      content: ''
+      position: absolute
+      top: 8px
+      left: 8px
+      width: 70px
+      height: 70px
+      border: 2px solid $primary
+      border-radius: 50px
+
+  .times
+    display: block
+    width: 90px
+    height: 90px
+    border-left: 7px solid $secondary
+    transform: rotate(45deg)
+    position: relative
+    top: 30px
+    left: 40px
+    &::after
+      content: ''
+      position: absolute
+      top: -43px
+      left: -46px
+      display: block
+      width: 90px
+      height: 90px
+      border-left: 7px solid $secondary
+      transform: rotate(-90deg)
+
+section:nth-child(2)
+  .bg-soft-red
+    background-color: $secondary
+  .backgound-bar-1,.backgound-bar-2
+    border-left: solid 10px $secondary
+    border-right: solid 10px $secondary
+    width: 200px
+    height: 500px
+  .backgound-bar-2
+    position: absolute
+    transform: rotate(-90deg)
+
