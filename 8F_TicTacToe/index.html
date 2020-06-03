@@ -23,16 +23,16 @@
           <div class="row text-white wrapper">
             <div class="col-4">
               <p class="display-3 font-italic">TIC</p>
-              <p class="times"></p>
+              <p class="cross"></p>
               <p class="d-circle"></p>
             </div>
             <div class="col-4">
               <p class="ml-4 circle"></p>
               <p class="display-3 font-italic">TAC</p>
-              <p class="times"></p>
+              <p class="cross"></p>
             </div>
             <div class="col-4">
-              <p class="times"></p>
+              <p class="cross"></p>
               <p class="d-circle"></p>
               <p class="display-3 font-italic">TOE</p>
             </div>
@@ -48,11 +48,11 @@
         <div class="col col-xs-9 col-sm-7 col-md-6 col-lg-6">
           <div class="row justify-content-center no-gutters">
             <div class="col-2">
-              <p class="p-3 mb-0 bg-dark text-white text-center">RIVAL</p>
-              <small class="text-white">YOUR TURN!</small>
+              <p class="py-3 mb-0 bg-dark text-white text-center">PLAYER B</p>
+              <small class="text-white player-B"></small>
             </div>
             <div class="col-3">
-              <p class="h2 py-2 bg-white text-center">2</p>
+              <p class="h2 py-2 bg-white text-center"><span class="score-B">2</span></p>
             </div>
             <div class="col-2">
               <p class="p-3 bg-dark text-white text-center">
@@ -60,19 +60,37 @@
               </p>
             </div>
             <div class="col-3">
-              <p class="h2 py-2 bg-white text-center">4</p>          
+              <p class="h2 py-2 bg-white text-center"><span class="score-A">4</span></p>
             </div>
             <div class="col-2">
-              <p class="p-3 mb-0 bg-dark text-white text-center">YOU</p>
+              <p class="py-3 mb-0 bg-dark text-white text-center">PLAYER A</p>
+              <small class="text-white player-A"></small>
             </div>
           </div>
-          <div class="row">
-            <div class="col d-flex justify-content-around">
-              <div class="backgound-bar-1"></div>
-              <div class="backgound-bar-2"></div>
+          <div class="row no-gutters">
+            <div class="col-4 ">
+              <div class="box" data-id="1"></div>
+              <div class="box" data-id="4"></div>
+              <div class="box" data-id="7"></div>
+            </div>
+            <div class="col-4 bar">
+              <div class="box" data-id="2"></div>
+              <div class="box" data-id="5"></div>
+              <div class="box" data-id="8"></div>
+            </div>
+            <div class="col-4">
+              <div class="box" data-id="3"></div>
+              <div class="box" data-id="6"></div>
+              <div class="box" data-id="9"></div>
             </div>
           </div>
-          <button class="mt-3 btn bg-soft-red btn-block btn-lg">RESTART</button>
+          <div class="row d-none">
+            <div class="col">
+              <p class="display-1 font-italic text-white text-center">WINNER!</p>
+              <p class="display-2 text-white text-center bg-dark">PLYER A</p>
+            </div>
+          </div>
+          <button class="my-3 btn bg-soft-red btn-block btn-lg restart">RESTART</button>
         </div>
       </div>
     </div>

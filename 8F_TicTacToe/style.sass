@@ -7,8 +7,10 @@ body
   font-family: 'Roboto Condensed', sans-serif
   background-color: $primary
 
+section
+  height: 100vh
+
 section:first-child
-  // height: 100vh
   background: $black
   .wrapper
     position: relative
@@ -37,22 +39,20 @@ section:first-child
       border: 2px solid $primary
       border-radius: 50px
 
-  .times
+  .cross
     display: block
-    width: 90px
     height: 90px
     border-left: 7px solid $secondary
     transform: rotate(45deg)
     position: relative
-    top: 30px
-    left: 40px
+    top: 40px;
+    left: 20px;
     &::after
       content: ''
       position: absolute
-      top: -43px
-      left: -46px
+      top: 0px;
+      left: -7px;
       display: block
-      width: 90px
       height: 90px
       border-left: 7px solid $secondary
       transform: rotate(-90deg)
@@ -60,12 +60,35 @@ section:first-child
 section:nth-child(2)
   .bg-soft-red
     background-color: $secondary
-  .backgound-bar-1,.backgound-bar-2
-    border-left: solid 10px $secondary
-    border-right: solid 10px $secondary
-    width: 200px
-    height: 500px
-  .backgound-bar-2
-    position: absolute
-    transform: rotate(-90deg)
-
+  .bar
+    border-left: 4px solid $secondary
+    border-right: 4px solid $secondary
+  .box
+    width: 100%
+    height: 150px
+    display: flex
+    justify-content: center
+    align-items: center
+    &:first-child,&:nth-child(2)
+      border-bottom: 4px solid $secondary
+  .circle
+    width: 70px
+    height: 70px
+    border: 6px solid $black
+    border-radius: 50px
+  .cross
+    position: relative
+    top: -30px;
+    left: 30px;
+    width: 90px
+    height: 90px
+    border-bottom: 7px solid $white
+    transform: rotate(45deg)
+    &::after
+      content: ''
+      position: absolute
+      top: 40px
+      left: 40px
+      display: block
+      height: 90px
+      border-left: 7px solid $white
