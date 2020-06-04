@@ -89,7 +89,7 @@ const winRule = [
 // A 和 B 某一個陣列，只要先符合 winRule 中的某一個陣列（不論順序），就是贏家
 function compareResult(a,b) {
 	// a,b 陣列如果長度沒有超過 3 的話，就不要比較結果。
-	if(a.length < 3 && b.length < 3) return
+	if(a.length < 3) return
 	console.log('compareResult');
 	// 贏的條件式
 	let compareNumA;
@@ -102,6 +102,8 @@ function compareResult(a,b) {
 			AScoreDisplay++
 			scoreA.textContent = AScoreDisplay;
 			isResult()
+			winner.textContent = `PLAYER A`
+			console.log('result',compareNumA,compareNumB);
 			return
 		}else if(compareNumB == true){
 			console.log('b win!');
@@ -109,13 +111,12 @@ function compareResult(a,b) {
 			scoreB.textContent = BScoreDisplay;
 			isResult()
 			winner.textContent = `PLAYER B`
+			console.log('result',compareNumA,compareNumB);
 			return
 		}else{
-			console.log('遊戲還沒結束 或是 平手啦!');
 			equalResult(a);
 		}
 	}
-	console.log('result',compareNumA,compareNumB);
 }
 
 function isResult() {
@@ -124,12 +125,12 @@ function isResult() {
 	restart.classList.remove('d-none');
 }
 function equalResult(a) {
-	if (a.length < 5) {
-		return
-	}else{
-		isResult()
-		winner.textContent = `EXCELLENT EQUAL!`
-	}
+	console.log(a.length);
+	console.log('遊戲還沒結束!'); 
+	if (a.length <= 4) return
+	console.log('遊戲平手!');
+	isResult()
+	winner.textContent = `EXCELLENT EQUAL!`
 }
 
 // 4. 記錄戰績功能（Local Storage）
