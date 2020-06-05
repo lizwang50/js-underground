@@ -4,6 +4,10 @@
 // 1.3 順序(畫面)：先手是Ｏ、後手是 X。
 // 1.4 玩家：先手是 A 、後手是 B 。
 // 1.5 位置（放置）：dataset 1~9
+const head = document.querySelector('.head');
+const startBtn = document.querySelector('.start');
+const startPlay = document.querySelector('.start-play');
+
 const playground = document.querySelectorAll('.box');
 const gamePage = document.querySelector('.game-page');
 const resultPage = document.querySelector('.result-page');
@@ -21,6 +25,10 @@ let ArrayB = [];
 
 playground.forEach((item) => {
 	item.addEventListener('click',startGameRecord);
+})
+startBtn.addEventListener('click', ()=>{
+	startPlay.classList.remove('d-none');
+	head.classList.add('d-none');
 })
 
 function startGameRecord() {
@@ -40,7 +48,7 @@ function startGameRecord() {
 		dataObj.className = 'cross'
 		ArrayB.push(dataObj.placeId)
 	}
-	compareResult(ArrayA,ArrayB);
+	compareResult(ArrayA,ArrayB,dataObj);
 	applyMark(dataObj,this);
 }
 
@@ -60,7 +68,8 @@ function applyMark(obj,target) {
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', restartGame);
 function restartGame() {
-  console.log('restartGame');
+	console.log('restartGame');
+	restart.classList.add('d-none');
   isPlay = false;
   playerA.textContent = ''
 	playerB.textContent = ''
@@ -94,29 +103,32 @@ function compareResult(a,b) {
 	// 贏的條件式
 	let compareNumA;
 	let compareNumB;
+	let playerA = 'PLAYER A';
+	let playerB = 'PLAYER B';
 	for (let i = 0; i < winRule.length; i++) {
 		compareNumA = a.includes(winRule[i][0]) && a.includes(winRule[i][1]) && a.includes(winRule[i][2]);
 		compareNumB = b.includes(winRule[i][0]) && b.includes(winRule[i][1]) && b.includes(winRule[i][2]);  
 		if(compareNumA == true){
 			console.log('a win!');
+			isResult();
 			AScoreDisplay++
-			scoreA.textContent = AScoreDisplay;
-			isResult()
-			winner.textContent = `PLAYER A`
-			console.log('result',compareNumA,compareNumB);
+			winner.textContent = playerA;
+			localStorage.setItem(playerA,AScoreDisplay);
+			setScore()
+			console.log('result',compareNumA,compareNumB,);
 			return
 		}else if(compareNumB == true){
 			console.log('b win!');
+			isResult();
 			BScoreDisplay++
-			scoreB.textContent = BScoreDisplay;
-			isResult()
-			winner.textContent = `PLAYER B`
+			winner.textContent = playerB
+			localStorage.setItem(playerB,BScoreDisplay)
+			setScore()
 			console.log('result',compareNumA,compareNumB);
 			return
-		}else{
-			equalResult(a);
 		}
 	}
+	equalResult(a)
 }
 
 function isResult() {
@@ -125,8 +137,7 @@ function isResult() {
 	restart.classList.remove('d-none');
 }
 function equalResult(a) {
-	console.log(a.length);
-	console.log('遊戲還沒結束!'); 
+	// 遊戲沒有玩完前，不進行平手判斷
 	if (a.length <= 4) return
 	console.log('遊戲平手!');
 	isResult()
@@ -134,3 +145,7 @@ function equalResult(a) {
 }
 
 // 4. 記錄戰績功能（Local Storage）
+function setScore() {
+	scoreA.textContent = AScoreDisplay;
+	scoreB.textContent = BScoreDisplay;
+}

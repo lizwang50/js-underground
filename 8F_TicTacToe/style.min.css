@@ -3,11 +3,8 @@ body {
   background-color: #FF6D70;
 }
 
-section {
-  height: 100vh;
-}
-
 section:first-child {
+  height: 100vh;
   background: #222222;
 }
 
@@ -21,7 +18,7 @@ section:first-child .btn {
 
 section:first-child .circle {
   display: block;
-  width: 70px;
+  max-width: 70px;
   height: 70px;
   border: 6px solid #ED494C;
   border-radius: 50px;
@@ -55,7 +52,7 @@ section:first-child .cross {
           transform: rotate(45deg);
   position: relative;
   top: 40px;
-  left: 20px;
+  left: 30px;
 }
 
 section:first-child .cross::after {

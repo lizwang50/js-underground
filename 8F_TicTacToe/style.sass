@@ -7,10 +7,8 @@ body
   font-family: 'Roboto Condensed', sans-serif
   background-color: $primary
 
-section
-  height: 100vh
-
 section:first-child
+  height: 100vh
   background: $black
   .wrapper
     position: relative
@@ -18,7 +16,7 @@ section:first-child
     color: $primary
   .circle
     display: block
-    width: 70px
+    max-width: 70px
     height: 70px
     border: 6px solid $secondary
     border-radius: 50px
@@ -46,7 +44,7 @@ section:first-child
     transform: rotate(45deg)
     position: relative
     top: 40px;
-    left: 20px;
+    left: 30px;
     &::after
       content: ''
       position: absolute
