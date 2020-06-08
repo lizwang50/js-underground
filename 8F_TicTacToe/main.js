@@ -80,8 +80,8 @@ function restartGame() {
 const displayScoreA = document.querySelector('.score-A');
 const displayScoreB = document.querySelector('.score-B');
 
-let scoreA = 0;
-let scoreB = 0;
+let localScoreA = localStorage.getItem('player A')|| 0;
+let localScoreB = localStorage.getItem('player B')|| 0;
 // 3.1 三個 O 連成一條線贏
 // 3.2 三個 X 連成一條線贏
 // 3.3 沒有連成一條線就是平手
@@ -111,14 +111,14 @@ function compareResult(a,b,player) {
 		if(compareNumA == true){
 			console.log('a win!');
       isResult();
-      scoreA++
-      localStorage.setItem('player A',scoreA);
+      localScoreA++
+      localStorage.setItem('player A',localScoreA);
       winner.textContent = 'PLAYER A';
 		}else if(compareNumB == true){
 			console.log('b win!');
       isResult();
-      scoreB++
-      localStorage.setItem('player B',scoreB);
+      localScoreB++
+      localStorage.setItem('player B',localScoreB);
       winner.textContent = 'PLAYER B';
 		}
   }
@@ -146,9 +146,6 @@ function equalResult(a) {
 
 function showScore() {
   console.log('showScore');
-  let localScoreA = localStorage.getItem('player A')|| 0;
-  let localScoreB = localStorage.getItem('player B')|| 0;
-  console.log(localScoreA,localScoreB);
   displayScoreA.textContent = localScoreA;
   displayScoreB.textContent = localScoreB;
 }
