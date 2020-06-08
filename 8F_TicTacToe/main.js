@@ -44,8 +44,8 @@ function startGameRecord() {
 		dataObj.className = 'cross'
 		ArrayB.push(dataObj.placeId)
 	}
-  compareResult(ArrayA,ArrayB,dataObj.player);
-  showScore(dataObj.player);
+  compareResult(ArrayA,ArrayB);
+  showScore();
 	applyMark(dataObj,this);
 }
 
@@ -98,7 +98,7 @@ const winRule = [
 // 做出規則陣列
 // 去比對 A 和 B player 所放置位置所儲存而成的陣列
 // A 和 B 某一個陣列，只要先符合 winRule 中的某一個陣列（不論順序），就是贏家
-function compareResult(a,b,player) {
+function compareResult(a,b) {
 	// a,b 陣列如果長度沒有超過 3 的話，就不要比較結果。
 	if(a.length < 3) return
 	console.log('compareResult');
