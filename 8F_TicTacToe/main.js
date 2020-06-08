@@ -12,13 +12,9 @@ const playground = document.querySelectorAll('.box');
 const gamePage = document.querySelector('.game-page');
 const resultPage = document.querySelector('.result-page');
 const winner = document.querySelector('.winner');
-const playerA = document.querySelector('.player-A');
-const playerB = document.querySelector('.player-B');
-const scoreA = document.querySelector('.score-A');
-const scoreB = document.querySelector('.score-B');
+const playerATurn = document.querySelector('.player-A-turn');
+const playerBTurn = document.querySelector('.player-B-turn');
 
-let AScoreDisplay = 0;
-let BScoreDisplay = 0;
 let isPlay = false;
 let ArrayA = [];
 let ArrayB = [];
@@ -48,7 +44,8 @@ function startGameRecord() {
 		dataObj.className = 'cross'
 		ArrayB.push(dataObj.placeId)
 	}
-	compareResult(ArrayA,ArrayB,dataObj);
+  compareResult(ArrayA,ArrayB,dataObj.player);
+  showScore(dataObj.player);
 	applyMark(dataObj,this);
 }
 
@@ -56,11 +53,11 @@ function applyMark(obj,target) {
 	target.innerHTML = `<div class="${obj.className}"></div>`;
   // 5. Your Turn
   if (obj.player == 'A') {
-    playerA.textContent = obj.textContent
-    playerB.textContent = ''
+    playerATurn.textContent = obj.textContent
+    playerBTurn.textContent = ''
   }else{
-    playerA.textContent = ''
-    playerB.textContent = obj.textContent
+    playerATurn.textContent = ''
+    playerBTurn.textContent = obj.textContent
   }
 }
 
@@ -71,8 +68,8 @@ function restartGame() {
 	console.log('restartGame');
 	restart.classList.add('d-none');
   isPlay = false;
-  playerA.textContent = ''
-	playerB.textContent = ''
+  playerATurn.textContent = ''
+	playerBTurn.textContent = ''
 	ArrayA = [];
 	ArrayB = [];
 	gamePage.classList.remove('d-none');
@@ -80,6 +77,11 @@ function restartGame() {
   playground.forEach((i)=>{i.innerHTML = '';})
 }
 // 3. 規則：
+const displayScoreA = document.querySelector('.score-A');
+const displayScoreB = document.querySelector('.score-B');
+
+let scoreA = 0;
+let scoreB = 0;
 // 3.1 三個 O 連成一條線贏
 // 3.2 三個 X 連成一條線贏
 // 3.3 沒有連成一條線就是平手
@@ -96,39 +98,31 @@ const winRule = [
 // 做出規則陣列
 // 去比對 A 和 B player 所放置位置所儲存而成的陣列
 // A 和 B 某一個陣列，只要先符合 winRule 中的某一個陣列（不論順序），就是贏家
-function compareResult(a,b) {
+function compareResult(a,b,player) {
 	// a,b 陣列如果長度沒有超過 3 的話，就不要比較結果。
 	if(a.length < 3) return
 	console.log('compareResult');
 	// 贏的條件式
 	let compareNumA;
-	let compareNumB;
-	let playerA = 'PLAYER A';
-	let playerB = 'PLAYER B';
+  let compareNumB;
 	for (let i = 0; i < winRule.length; i++) {
 		compareNumA = a.includes(winRule[i][0]) && a.includes(winRule[i][1]) && a.includes(winRule[i][2]);
 		compareNumB = b.includes(winRule[i][0]) && b.includes(winRule[i][1]) && b.includes(winRule[i][2]);  
 		if(compareNumA == true){
 			console.log('a win!');
-			isResult();
-			AScoreDisplay++
-			winner.textContent = playerA;
-			localStorage.setItem(playerA,AScoreDisplay);
-			setScore()
-			console.log('result',compareNumA,compareNumB,);
-			return
+      isResult();
+      scoreA++
+      localStorage.setItem('player A',scoreA);
+      winner.textContent = 'PLAYER A';
 		}else if(compareNumB == true){
 			console.log('b win!');
-			isResult();
-			BScoreDisplay++
-			winner.textContent = playerB
-			localStorage.setItem(playerB,BScoreDisplay)
-			setScore()
-			console.log('result',compareNumA,compareNumB);
-			return
+      isResult();
+      scoreB++
+      localStorage.setItem('player B',scoreB);
+      winner.textContent = 'PLAYER B';
 		}
-	}
-	equalResult(a)
+  }
+  equalResult(a);
 }
 
 function isResult() {
@@ -144,8 +138,18 @@ function equalResult(a) {
 	winner.textContent = `EXCELLENT EQUAL!`
 }
 
-// 4. 記錄戰績功能（Local Storage）
-function setScore() {
-	scoreA.textContent = AScoreDisplay;
-	scoreB.textContent = BScoreDisplay;
+// 4. 記錄戰績（Local Storage）
+// 4.1 Default：AB score 為 0:0
+// 4.2 如果 localStorage 中，A or B 沒有值的時候，要顯示為 0
+// 4.3 如果 localStorage 中，A or B 有值的時候，要顯示在畫面上。
+// 4.4 重整畫面後，可以繼續從 localStorage 中提取 A / B 的分數，並且繼續累加。
+
+function showScore() {
+  console.log('showScore');
+  let localScoreA = localStorage.getItem('player A')|| 0;
+  let localScoreB = localStorage.getItem('player B')|| 0;
+  console.log(localScoreA,localScoreB);
+  displayScoreA.textContent = localScoreA;
+  displayScoreB.textContent = localScoreB;
 }
+showScore();
