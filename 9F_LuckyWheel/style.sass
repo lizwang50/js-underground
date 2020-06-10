@@ -1,10 +1,34 @@
 $primary: #63B397
 $secondary: #468DA0
+$warning: #FEFDBA
 $danger: #F7465C
+$black: #333333
 $white: #ffffff
 $size: 200px
+
+@keyframes roll 
+  100% {transform: rotate(360deg)}
+
 body
   font-family: 'Quicksand', sans-serif
+
+.pointer
+  position: absolute
+  top: -10px
+  left: 46%
+  width: 30px
+  height: 30px
+  background: $danger
+  border-radius: 50%
+  box-shadow: 6px 0px 9px -5px rgba(0, 0, 0, 0.64)
+  z-index: 1 
+  &::before
+    content: ''
+    position: absolute
+    top: 18px
+    border-style: solid
+    border-width: 30px 15px 0 15px
+    border-color: $danger transparent transparent transparent
 
 .circle
   position: relative
@@ -12,31 +36,46 @@ body
   height: 400px
   box-shadow: 17px 4px 36px -6px rgba(0,0,0,0.3)
   border-radius: 50%
-  .pointer
-    position: absolute
-    top: -20px
-    left: 46%
-    width: 30px
-    height: 30px
-    background: $danger
-    border-radius: 50%
-    box-shadow: 6px 0px 9px -5px rgba(0, 0, 0, 0.64)
-    &::before
-      content: ''
-      position: absolute
-      top: 18px
-      border-style: solid
-      border-width: 30px 15px 0 15px
-      border-color: $danger transparent transparent transparent
   .shape
     width: $size * 2
     height: $size * 2
-    background-color: $primary
     border-radius: 50%
-  .top
+    mix-blend-mode: darken
+  .top, .left, .right
     background-image: linear-gradient(120deg, transparent 50%, white 50%), linear-gradient(60deg, white 50%, transparent 50%)
+    background-color: $primary
+    position: absolute
   .left
-    background-image: linear-gradient(120deg, transparent 50%, white 50%), linear-gradient(60deg, white 50%, transparent 50%)
-    transform: rotate(90deg)
+    transform: rotate(120deg)
   .right
-    background-image: linear-gradient(120deg, transparent 50%, white 50%), linear-gradient(60deg, white 50%, transparent 50%)
+    transform: rotate(240deg)
+  .price-item
+    position: absolute
+  .price-item:first-child
+    transform: rotate(-60deg)
+    top: 30%
+    left: 15%
+  .price-item:nth-child(2)
+    top: 15%
+    left: 42%
+  .price-item:nth-child(3)
+    transform: rotate(60deg)
+    top: 30%
+    right: 15%
+  .price-item:nth-child(4)
+    bottom: 27%
+    right: 15%
+    transform: rotate(120deg)
+  .price-item:nth-child(5)
+    bottom: 10%
+    left: 42%
+    transform: rotate(180deg)
+  .price-item:nth-child(6)
+    bottom: 27%
+    left: 15%
+    transform: rotate(240deg)
+
+.rotate
+  animation: roll 4s linear infinite
+.btn-danger
+  background-color: $danger
