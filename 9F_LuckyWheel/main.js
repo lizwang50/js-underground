@@ -1,9 +1,10 @@
 // 1. 旋轉速度
-// 1.1 wheel 會旋轉，3 秒後，會漸慢然後停止。
+// 1.1 wheel 會旋轉，然後停止。
 const wheel = document.querySelector('.wheel');
 const drawBtn = document.querySelector('#draw');
 const stopDrawBtn = document.querySelector('#stopDraw');
 const chosenPrizeShow = document.querySelector('.chosen-prize');
+const counterShow = document.querySelector('.counter');
 let animations;
 
 const wheelRolling = [
@@ -19,24 +20,25 @@ function rollWheel() {
   animations = wheel.animate(
     wheelRolling,
     rollSetting
-    )
-    shuffle(prizeArr);
+  )
 }
 function stopWheel() {
+  animations.pause();
+  if (prizeArr.length == 0 ) return
+  console.log(prizeArr.length);
   chosenPrizeShow.textContent = prizeArr[0];
   deleteChosenPrize();
   console.log(prizeArr);
-  animations.pause();
 }
 
 drawBtn.addEventListener('click',rollWheel);
 stopDrawBtn.addEventListener('click',stopWheel);
 
-// 2. 列出所有獎品
-// 2.1 次數會減少。且不能小於 0。
-// 2.2 選中的獎品數量會減少。
+// 2. 列出所有獎品陣列(隨機排序)
+// 2.1 點選按鈕次數會減少。且不能小於 0。
+// 2.2 選過的獎品就不能再選。
 let prizeArr = [];
-let prizeArrLen;
+
 function createPrizeArr() {
   prizeArr.push('Apple');
   for (let i = 0; i < 3; i++) {
@@ -45,8 +47,8 @@ function createPrizeArr() {
   for (let i = 0; i < 5; i++) {
     prizeArr.push('Elephant','DataDog','formula');
   }
-  prizeArrLen = prizeArr.length;
-  console.log(prizeArr,'totalLength :',prizeArrLen);
+  shuffle(prizeArr);
+  console.log(prizeArr,'totalLength :',prizeArr.length);
   return prizeArr
 }
 createPrizeArr();
@@ -59,5 +61,8 @@ function shuffle(arr) {
 }
 
 function deleteChosenPrize() {
-  prizeArr.splice(0,1)
+  prizeArr.shift();
+  counterShow.textContent = prizeArr.length;
 }
+
+console.log(wheel.nodeValue);
