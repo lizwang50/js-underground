@@ -11,24 +11,33 @@ const wheelRolling = [
   { transform: 'rotate(0)'},
   { transform: 'rotate(360deg)'}
 ];
-const rollSetting = {
+let rollSetting = {
   duration: 1000,
   iterations: Infinity
 }
 
 function rollWheel() {
+  drawBtn.classList.add('d-none');
+  stopDrawBtn.classList.remove('d-none');
   animations = wheel.animate(
     wheelRolling,
     rollSetting
   )
 }
 function stopWheel() {
-  animations.pause();
+  drawBtn.classList.remove('d-none');
+  stopDrawBtn.classList.add('d-none');
+  console.log(rollSetting.iterations);
+  choosePrize(prizeArr[0]);
+  wheelRotate();
+  wheel.animate(
+    wheelRolling,
+    rollSetting
+  )
+  // animations.pause();
   if (prizeArr.length == 0 ) return
-  console.log(prizeArr.length);
   chosenPrizeShow.textContent = prizeArr[0];
   deleteChosenPrize();
-  console.log(prizeArr);
 }
 
 drawBtn.addEventListener('click',rollWheel);
@@ -45,7 +54,7 @@ function createPrizeArr() {
     prizeArr.push('Banana','Cherry');
   }
   for (let i = 0; i < 5; i++) {
-    prizeArr.push('Elephant','DataDog','formula');
+    prizeArr.push('Elephant','DataDog','Formula');
   }
   shuffle(prizeArr);
   console.log(prizeArr,'totalLength :',prizeArr.length);
@@ -65,4 +74,34 @@ function deleteChosenPrize() {
   counterShow.textContent = prizeArr.length;
 }
 
-console.log(wheel.nodeValue);
+// 3. 拿到選出來的獎品。
+// 3.1 轉盤上的每個獎品分別在幾度的位置上
+// 3.2 比對一致，則讓該獎品對準箭頭。
+
+function choosePrize(prz) {
+  console.log('choosePrize');
+  // wheelRotate(60);
+  if (prz == 'Apple') {
+    console.log('Apple');
+  }
+  if(prz == 'Banana'){
+    console.log('Banana');
+  }
+  if(prz == 'Cherry'){
+    console.log('Cherry');
+  }
+  if(prz == 'DataDog'){
+    console.log('DataDog');
+  }
+  if(prz == 'Elephant'){
+    console.log('Elephant');
+  }
+  if(prz == 'Formula'){
+    console.log('Formula');
+  }
+}
+
+function wheelRotate() {
+  rollSetting.iterations = 3;
+  console.log(rollSetting.iterations);
+}
