@@ -111,13 +111,14 @@ function countWheelAngle(angle) {
   let pauseAngle = currentTime * 0.36 % 360;
   wheelRolling = [
     { transform: `rotate(${pauseAngle}deg)`},
-    { transform: `rotate(${angle}deg)`}
+    { transform: `rotate(${angle + 720}deg)`}
   ];
   console.log(wheelRolling[1]);
   rollSetting = {
     duration: 3000,
     iterations: 1,
-    fill: 'forwards'
+    fill: 'forwards',
+    easing: "ease-out"
   }
   animations = wheel.animate(
     wheelRolling,
