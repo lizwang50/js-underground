@@ -7,34 +7,30 @@ const chosenPrizeShow = document.querySelector('.chosen-prize');
 const counterShow = document.querySelector('.counter');
 let animations;
 
-const wheelRolling = [
-  { transform: 'rotate(0)'},
-  { transform: 'rotate(360deg)'}
-];
-let rollSetting = {
-  duration: 1000,
-  iterations: Infinity
-}
+let wheelRolling;
+let rollSetting;
 
 function rollWheel() {
   drawBtn.classList.add('d-none');
   stopDrawBtn.classList.remove('d-none');
+  wheelRolling = [
+    { transform: 'rotate(0deg)'},
+    { transform: 'rotate(360deg)'}
+  ];
+  rollSetting = {
+    duration: 1000,
+    iterations: 9999
+  }
   animations = wheel.animate(
     wheelRolling,
     rollSetting
   )
 }
 function stopWheel() {
+  console.log('-stopWheel-');
   drawBtn.classList.remove('d-none');
   stopDrawBtn.classList.add('d-none');
-  console.log(rollSetting.iterations);
   choosePrize(prizeArr[0]);
-  wheelRotate();
-  wheel.animate(
-    wheelRolling,
-    rollSetting
-  )
-  // animations.pause();
   if (prizeArr.length == 0 ) return
   chosenPrizeShow.textContent = prizeArr[0];
   deleteChosenPrize();
@@ -79,29 +75,52 @@ function deleteChosenPrize() {
 // 3.2 比對一致，則讓該獎品對準箭頭。
 
 function choosePrize(prz) {
-  console.log('choosePrize');
-  // wheelRotate(60);
+  console.log('-choosePrize-');
   if (prz == 'Apple') {
     console.log('Apple');
+    countWheelAngle(60);
   }
   if(prz == 'Banana'){
     console.log('Banana');
+    countWheelAngle(0);
   }
   if(prz == 'Cherry'){
     console.log('Cherry');
+    countWheelAngle(300);
   }
   if(prz == 'DataDog'){
     console.log('DataDog');
+    countWheelAngle(240);
   }
   if(prz == 'Elephant'){
     console.log('Elephant');
+    countWheelAngle(180);
   }
   if(prz == 'Formula'){
     console.log('Formula');
+    countWheelAngle(120);
   }
 }
 
-function wheelRotate() {
-  rollSetting.iterations = 3;
-  console.log(rollSetting.iterations);
+function countWheelAngle(angle) {
+  console.log(angle);
+  console.log('-countWheelAngle-');
+  // x 毫秒轉幾度
+  let currentTime = animations.currentTime;
+  animations.finish();
+  let pauseAngle = currentTime * 0.36 % 360;
+  wheelRolling = [
+    { transform: `rotate(${pauseAngle}deg)`},
+    { transform: `rotate(${angle}deg)`}
+  ];
+  console.log(wheelRolling[1]);
+  rollSetting = {
+    duration: 3000,
+    iterations: 1,
+    fill: 'forwards'
+  }
+  animations = wheel.animate(
+    wheelRolling,
+    rollSetting
+  )
 }
