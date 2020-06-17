@@ -27,13 +27,15 @@ function rollWheel() {
   )
 }
 function stopWheel() {
-  console.log('-stopWheel-');
+  console.log('-stopWheel-',prizeArr.length);
   drawBtn.classList.remove('d-none');
   stopDrawBtn.classList.add('d-none');
   choosePrize(prizeArr[0]);
-  if (prizeArr.length == 0 ) return
   chosenPrizeShow.textContent = prizeArr[0];
   deleteChosenPrize();
+  if (prizeArr.length == 0) {
+    drawBtn.classList.add('d-none');
+  }
 }
 
 drawBtn.addEventListener('click',rollWheel);
@@ -56,6 +58,7 @@ function createPrizeArr() {
   console.log(prizeArr,'totalLength :',prizeArr.length);
   return prizeArr
 }
+
 createPrizeArr();
 // Fisher-Yates Shuffle
 function shuffle(arr) {
@@ -75,7 +78,6 @@ function deleteChosenPrize() {
 // 3.2 比對一致，則讓該獎品對準箭頭。
 
 function choosePrize(prz) {
-  console.log('-choosePrize-');
   if (prz == 'Apple') {
     console.log('Apple');
     countWheelAngle(60);
@@ -103,8 +105,6 @@ function choosePrize(prz) {
 }
 
 function countWheelAngle(angle) {
-  console.log(angle);
-  console.log('-countWheelAngle-');
   // x 毫秒轉幾度
   let currentTime = animations.currentTime;
   animations.finish();
