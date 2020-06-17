@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -7,32 +8,41 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/613aca3582.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <!-- <script src="https://kit.fontawesome.com/613aca3582.js" crossorigin="anonymous"></script> -->
   <link rel="stylesheet" href="./style.min.css">
   <title>Lucky Wheel</title>
 </head>
+
 <body>
   <h1 class="text-center py-3">9F Lucky Wheel</h1>
-  <section>
-    <div class="container d-flex justify-content-center">
+  <section class="vh-100">
+    <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="pointer"></div>
-          <div class="circle mt-3">
-            <div class="shape top"></div>
-            <div class="shape left"></div>
-            <div class="shape right"></div>
-            <div class="price-list d-flex justify-content-between">
-              <p class="price-item text-center">Apple</p>
-              <p class="price-item text-center">Banana</p>
-              <p class="price-item text-center">Cherry</p>
-              <p class="price-item text-center">Datadog</p>
-              <p class="price-item text-center">Elefant</p>
-              <p class="price-item text-center">Formula</p>
+        <div class="col-md-8 d-flex justify-content-center">
+          <div class="wrapper">
+            <div class="pointer"></div>
+            <div class="wheel mt-3">
+              <div class="shape top"></div>
+              <div class="shape left"></div>
+              <div class="shape right"></div>
+              <div class="prize-list d-flex justify-content-between">
+                <p class="prize-item text-center">Apple</p>
+                <p class="prize-item text-center">Banana</p>
+                <p class="prize-item text-center">Cherry</p>
+                <p class="prize-item text-center">Datadog</p>
+                <p class="prize-item text-center">Elephant</p>
+                <p class="prize-item text-center">Formula</p>
+              </div>
             </div>
+            <div class="shadow"></div>
+            <button id="draw" class="mt-3 btn btn-danger btn-block btn-lg" type="submit">DRAW!</button>
+            <button id="stopDraw" class="mt-3 btn btn-danger btn-block btn-lg d-none" type="submit">STOP!</button>
           </div>
-          <button class="mt-3 btn btn-danger btn-block btn-lg" type="submit">DRAW!</button>
+        </div>
+        <div class="col-md-4">
+          <h2>抽到的獎品：<span class="chosen-prize"></span></h2>
+          <h3>剩餘次數： <span class="counter">22</span> 次</h3>
         </div>
       </div>
     </div>
@@ -50,4 +60,5 @@
     crossorigin="anonymous"></script>
   <script src="./main.js"></script>
 </body>
+
 </html>
