@@ -5,14 +5,14 @@ const drawBtn = document.querySelector('#draw');
 const stopDrawBtn = document.querySelector('#stopDraw');
 const chosenPrizeShow = document.querySelector('.chosen-prize');
 const counterShow = document.querySelector('.counter');
-let animations;
 
+let animations;
 let wheelRolling;
 let rollSetting;
+let rollState;
 
 function rollWheel() {
-  drawBtn.classList.add('d-none');
-  stopDrawBtn.classList.remove('d-none');
+  rollState = 1;
   wheelRolling = [
     { transform: 'rotate(0deg)'},
     { transform: 'rotate(360deg)'}
@@ -25,17 +25,22 @@ function rollWheel() {
     wheelRolling,
     rollSetting
   )
+  updateButton('d-none');
 }
 function stopWheel() {
-  console.log('-stopWheel-',prizeArr.length);
-  drawBtn.classList.remove('d-none');
-  stopDrawBtn.classList.add('d-none');
+  rollState = 2;
   choosePrize(prizeArr[0]);
-  chosenPrizeShow.textContent = prizeArr[0];
-  deleteChosenPrize();
   if (prizeArr.length == 0) {
     drawBtn.classList.add('d-none');
+    return
   }
+  updateButton('d-none');
+  // 顯示抽到的獎品
+  chosenPrizeShow.textContent = prizeArr[0];
+  // 刪除抽掉的獎品
+  prizeArr.shift();
+  // 顯示剩下的次數(會 -1 )
+  counterShow.textContent = prizeArr.length;
 }
 
 drawBtn.addEventListener('click',rollWheel);
@@ -55,7 +60,7 @@ function createPrizeArr() {
     prizeArr.push('Elephant','DataDog','Formula');
   }
   shuffle(prizeArr);
-  console.log(prizeArr,'totalLength :',prizeArr.length);
+  console.log(prizeArr);
   return prizeArr
 }
 
@@ -66,11 +71,6 @@ function shuffle(arr) {
     let j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-}
-
-function deleteChosenPrize() {
-  prizeArr.shift();
-  counterShow.textContent = prizeArr.length;
 }
 
 // 3. 拿到選出來的獎品。
@@ -104,16 +104,21 @@ function choosePrize(prz) {
   }
 }
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 function countWheelAngle(angle) {
   // x 毫秒轉幾度
   let currentTime = animations.currentTime;
   animations.finish();
   let pauseAngle = currentTime * 0.36 % 360;
+  let n = getRandomArbitrary(700, 740);
+  console.log(n);
+
   wheelRolling = [
     { transform: `rotate(${pauseAngle}deg)`},
-    { transform: `rotate(${angle + 720}deg)`}
+    { transform: `rotate(${angle + n}deg)`}
   ];
-  console.log(wheelRolling[1]);
   rollSetting = {
     duration: 3000,
     iterations: 1,
@@ -125,3 +130,22 @@ function countWheelAngle(angle) {
     rollSetting
   )
 }
+// fix 1. 結果要等轉盤轉完再顯示結果
+const result = document.querySelector('.result-view');
+function updateButton(displayNone) {
+  if (rollState == 1) {
+    console.log('rollWheel');
+    result.classList.remove('animate-in');
+    drawBtn.classList.add(displayNone);
+    stopDrawBtn.classList.remove(displayNone);    
+  }else if(rollState == 2){
+    console.log('stopWheel');
+    result.classList.add('animate-in');
+    stopDrawBtn.classList.add(displayNone);
+    //fix 2. Draw 按鈕在旋轉停止後顯示
+    setTimeout(() => {
+      drawBtn.classList.remove(displayNone);
+    }, 3100);
+  }
+}
+//fix 3. 轉針停止的範圍設定
