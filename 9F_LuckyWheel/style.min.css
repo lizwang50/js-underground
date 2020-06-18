@@ -117,6 +117,7 @@ body {
   top: 45%;
   left: -110vw;
   width: 100%;
+  height: auto;
   z-index: 1;
   background: rgba(254, 253, 186, 0.9);
   -webkit-box-shadow: 17px 4px 36px -6px rgba(0, 0, 0, 0.3);
