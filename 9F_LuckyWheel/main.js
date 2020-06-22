@@ -52,13 +52,13 @@ let prizeArr = [];
 
 function createPrizeArr() {
   prizeArr.push('Apple');
-  // for (let i = 0; i < 3; i++) {
-  //   prizeArr.push('Banana','Cherry');
-  // }
-  // for (let i = 0; i < 5; i++) {
-  //   prizeArr.push('Elephant','DataDog','Formula');
-  // }
-  // shuffle(prizeArr);
+  for (let i = 0; i < 3; i++) {
+    prizeArr.push('Banana','Cherry');
+  }
+  for (let i = 0; i < 5; i++) {
+    prizeArr.push('Elephant','DataDog','Formula');
+  }
+  shuffle(prizeArr);
   console.log(prizeArr);
   return prizeArr
 }
