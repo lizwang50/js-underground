@@ -12,7 +12,9 @@ let rollSetting;
 let rollState;
 
 function rollWheel() {
-  rollState = 1;
+  rollState = 'roll';
+  console.log('1. 抽獎開始');
+  updateButton('d-none');
   wheelRolling = [
     { transform: 'rotate(0deg)'},
     { transform: 'rotate(360deg)'}
@@ -25,20 +27,17 @@ function rollWheel() {
     wheelRolling,
     rollSetting
   )
-  updateButton('d-none');
 }
+
 function stopWheel() {
-  rollState = 2;
+  rollState = 'stop';
   choosePrize(prizeArr[0]);
-  if (prizeArr.length == 0) {
-    drawBtn.classList.add('d-none');
-    return
-  }
   updateButton('d-none');
   // 顯示抽到的獎品
   chosenPrizeShow.textContent = prizeArr[0];
   // 刪除抽掉的獎品
   prizeArr.shift();
+  console.log('4. 停止抽獎。獎品列表長度：',prizeArr.length);
   // 顯示剩下的次數(會 -1 )
   counterShow.textContent = prizeArr.length;
 }
@@ -53,18 +52,19 @@ let prizeArr = [];
 
 function createPrizeArr() {
   prizeArr.push('Apple');
-  for (let i = 0; i < 3; i++) {
-    prizeArr.push('Banana','Cherry');
-  }
-  for (let i = 0; i < 5; i++) {
-    prizeArr.push('Elephant','DataDog','Formula');
-  }
-  shuffle(prizeArr);
+  // for (let i = 0; i < 3; i++) {
+  //   prizeArr.push('Banana','Cherry');
+  // }
+  // for (let i = 0; i < 5; i++) {
+  //   prizeArr.push('Elephant','DataDog','Formula');
+  // }
+  // shuffle(prizeArr);
   console.log(prizeArr);
   return prizeArr
 }
 
 createPrizeArr();
+
 // Fisher-Yates Shuffle
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -112,6 +112,7 @@ function countWheelAngle(angle) {
   let currentTime = animations.currentTime;
   animations.finish();
   let pauseAngle = currentTime * 0.36 % 360;
+  //fix 3. 轉針停止的範圍設定
   let n = getRandomArbitrary(700, 740);
   console.log(n);
 
@@ -132,20 +133,21 @@ function countWheelAngle(angle) {
 }
 // fix 1. 結果要等轉盤轉完再顯示結果
 const result = document.querySelector('.result-view');
-function updateButton(displayNone) {
-  if (rollState == 1) {
-    console.log('rollWheel');
+function updateButton(displayNone) {  
+  if (rollState == 'roll') {
+    console.log('2. 開始轉。獎品列表長度：',prizeArr.length);
     result.classList.remove('animate-in');
     drawBtn.classList.add(displayNone);
     stopDrawBtn.classList.remove(displayNone);    
-  }else if(rollState == 2){
-    console.log('stopWheel');
+  }else if(rollState == 'stop'){
+    console.log('3. 停止轉。獎品列表長度：',prizeArr.length);
     result.classList.add('animate-in');
     stopDrawBtn.classList.add(displayNone);
     //fix 2. Draw 按鈕在旋轉停止後顯示
     setTimeout(() => {
+      if (prizeArr.length == 0) return
+      console.log('Draw 按鈕在旋轉停止後顯示');    
       drawBtn.classList.remove(displayNone);
     }, 3100);
   }
 }
-//fix 3. 轉針停止的範圍設定
