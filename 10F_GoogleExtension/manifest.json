@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "TodoListByLiz",
+  "description": "This extension allows the user to create todolist of the newtab page.",
+  "version": "1.0",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Develop by Liz"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "chrome_url_overrides" : {
+    "newtab": "todolist.html"
+  }
+}
