@@ -77,16 +77,13 @@ function createNumbers(o,a,b) {
   console.log('3. 製作算式：',a,o,b)
     if (o == '/' && a % b !== 0){
       // console.log('4. 判斷算式：不可以回傳的除法');
-      randomNumbers();
-      // console.log('5. 重跑另外一個算式');
-      updateQuestionsView();
-    }else{
+      numberA = numberA - numberA % numberB ;
+    }
       // console.log('4. 判斷算式：可以回傳算式');
       numbers = [numberA,randomOperators,numberB]
       updateQuestionsView();
       // console.log('5. 呈現算式：將算式呈現到畫面上之後 return numbers');
       return numbers
-    }
 }
 
 // random questions
